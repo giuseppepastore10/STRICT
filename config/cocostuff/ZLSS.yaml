@@ -1,0 +1,62 @@
+DATASET: LoaderZLS
+ROOT: data/datasets/cocostuff/dataset
+VAL_SIZE: 2000
+
+IMAGE:
+    MEAN:
+        R: 122.675
+        G: 116.669
+        B: 104.008
+    SIZE:
+        TRAIN: 321
+        TEST: 513
+
+SPLIT:
+    TRAIN: train
+    TEST: novel
+
+
+# Model definition
+N_CLASSES: 182
+N_BLOCKS: [3, 4, 23, 3]
+PYRAMIDS: [6, 12, 18, 24]
+
+# Training setting
+BATCH_SIZE:
+    TRAIN: 4
+    TEST: 10
+#ITER_MAX: 100000
+ITER_MAX: 3000
+#ITER_SIZE: 2
+ITER_SIZE: 1
+#ITER_SAVE: 10000
+ITER_SAVE: 30000
+ITER_MY_SAVE: 2500
+ITER_TB: 500
+ITER_PSEUDO: 1
+ITER_VAL: 500000
+UPDATE_REFERENCE: 500
+LR_DECAY: 10
+LR: 2.5e-4
+MOMENTUM: 0.9
+OPTIMIZER: sgd
+POLY_POWER: 0.9
+WEIGHT_DECAY: 5.0e-4
+
+INIT_MODEL: data/models/resnet/resnet_mapillary.pth.tar  # sostituire con Mapillary
+INIT_MODEL_O: data/models/resnet/deeplabv2_resnet101_msc-vocaug.pth # qui BN quella della resnet nuova
+INIT_INITIAL_CHECKPOINT: data/models/spnet/cocostuff/checkpoint_100000.pth.tar
+SAVE_DIR: .
+LOG_DIR: runs/cocostuff
+NUM_WORKERS: 0
+WARP_IMAGE: True
+
+
+
+
+
+
+
+
+
+
