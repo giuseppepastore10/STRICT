@@ -11,7 +11,7 @@ Generating accurate pseudo-labels for unseen classes in semantic segmentation is
 
 We demonstrated that our model surpasses all more complex strategies in GZLSS on PascalVOC12 and COCO-stuff datasets achieving the current state of the art.
 
-![teaser](https://raw.githubusercontent.com/fcdl94/MiB/master/teaser.png)
+![teaser](https://raw.githubusercontent.com/giuseppepastore10/STRICT/master/teaserFig.png)
 
 # Requirements
 
