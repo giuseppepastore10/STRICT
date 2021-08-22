@@ -1,0 +1,17 @@
+#!/bin/bash
+
+
+#python -m torch.distributed.launch --nproc_per_node=4 --master_port $1 train.py --config config/cocostuff/ZLSS.yaml --experimentid STRICT --imagedataset cocostuff  --spnetcheckpoint --pseudolabeling 0 -m "/home/giuseppep/SPNet/logs/cocostuff/SPNet_noval_correct/checkpoint_final.pth.tar" --iter 22356 --scale 2 --mirroring --batch_size 2
+#python -m torch.distributed.launch --nproc_per_node=4 --master_port $1 train.py --config config/cocostuff/ZLSS.yaml --experimentid STRICT_it --imagedataset cocostuff  --spnetcheckpoint --pseudolabeling 0 -m "/home/giuseppep/STRICT/logs/cocostuff/STRICT/checkpoint_final.pth.tar" --iter 22356  --scale 2 --mirroring --batch_size 2
+#python -m torch.distributed.launch --nproc_per_node=1 --master_port $1 eval.py --config config/cocostuff/ZLSS.yaml --imagedataset cocostuff --model-path /home/giuseppep/STRICT/logs/cocostuff/STRICT/checkpoint_final.pth.tar -r gzlss
+python -m torch.distributed.launch --nproc_per_node=1 --master_port $1 eval.py --config config/cocostuff/ZLSS.yaml --imagedataset cocostuff --model-path /home/giuseppep/STRICT_it/logs/cocostuff/STRICT_it/checkpoint_final.pth.tar -r gzlss
+
+python -m torch.distributed.launch --nproc_per_node=4 --master_port $1 train.py --config config/cocostuff/ZLSS.yaml --experimentid STRICT_bkg --imagedataset cocostuff  --spnetcheckpoint --pseudolabeling 0 -m "/home/giuseppep/SPNet/logs/cocostuff/SPNet_noval_bkg/checkpoint_final.pth.tar" --iter 22356 --scale 2 --mirroring --bkg --batch_size 2
+python -m torch.distributed.launch --nproc_per_node=4 --master_port $1 train.py --config config/cocostuff/ZLSS.yaml --experimentid STRICT_bkg_it --imagedataset cocostuff  --spnetcheckpoint --pseudolabeling 0 -m "/home/giuseppep/STRICT/logs/cocostuff/STRICT_bkg/checkpoint_final.pth.tar" --iter 22356  --scale 2 --mirroring --bkg --batch_size 2
+python -m torch.distributed.launch --nproc_per_node=1 --master_port $1 eval.py --config config/cocostuff/ZLSS.yaml --imagedataset cocostuff --model-path /home/giuseppep/STRICT/logs/cocostuff/STRICT_bkg/checkpoint_final.pth.tar -r gzlss --bkg
+python -m torch.distributed.launch --nproc_per_node=1 --master_port $1 eval.py --config config/cocostuff/ZLSS.yaml --imagedataset cocostuff --model-path /home/giuseppep/STRICT/logs/cocostuff/STRICT_bkg_it/checkpoint_final.pth.tar -r gzlss  --bkg
+
+python -m torch.distributed.launch --nproc_per_node=4 --master_port $1 train.py --config config/cocostuff/ZLSS.yaml --experimentid HP --imagedataset cocostuff  --spnetcheckpoint --pseudolabeling 0 -m "/home/giuseppep/SPNet/logs/cocostuff/SPNet_noval_correct/checkpoint_final.pth.tar" --iter 22356 --batch_size 2
+python -m torch.distributed.launch --nproc_per_node=4 --master_port $1 train.py --config config/cocostuff/ZLSS.yaml --experimentid HP_bkg --imagedataset cocostuff  --spnetcheckpoint --pseudolabeling 0 -m "/home/giuseppep/SPNet/logs/cocostuff/SPNet_noval_bkg/checkpoint_final.pth.tar" --iter 22356  --bkg --batch_size 2
+python -m torch.distributed.launch --nproc_per_node=1 --master_port $1 eval.py --config config/cocostuff/ZLSS.yaml --imagedataset cocostuff --model-path /home/giuseppep/STRICT/logs/cocostuff/HP/checkpoint_final.pth.tar -r gzlss
+python -m torch.distributed.launch --nproc_per_node=1 --master_port $1 eval.py --config config/cocostuff/ZLSS.yaml --imagedataset cocostuff --model-path /home/giuseppep/STRICT/logs/cocostuff/HP_bkg/checkpoint_final.pth.tar -r gzlss  --bkg
